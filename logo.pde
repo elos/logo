@@ -37,16 +37,19 @@ void draw()
   ox = r + 55;
   oy = r + 55;
   
-  segments = 3;
+  segments = 2;
   
-  int shift = 10;
-  int offset = 3;
-  for (float s = (offset + 1) * tau / shift; s <= tau; s += tau / shift) {
-    for (float t = 0; t <= tau; t += dt) {
-      radius = pradius(t, segments, r, s);
-      x1 = pcirclex(t, period, radius);
-      y1 = pcircley(t, period, radius);
-      point(x1 + ox, y1 + oy);
+  int outer_shift = 3;
+  int inner_shift = 30;
+  int offset = inner_shift - 3;
+  for (float o = tau / outer_shift; o <= tau; o += tau / outer_shift) {
+    for (float s = offset * tau / inner_shift + o; s <= tau + o; s += tau / inner_shift) {
+      for (float t = 0; t <= tau; t += dt) {
+        radius = pradius(t, segments, r, s);
+        x1 = pcirclex(t, period, radius);
+        y1 = pcircley(t, period, radius);
+        point(x1 + ox, y1 + oy);
+      }
     }
   }
   noLoop();
