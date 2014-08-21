@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/processing.js/1.4.8/processing.min.js"></script>
+  </head>
+  <body>
+    <canvas data-processing-sources="logo.pde"></canvas>
+    <img id="canvasImg" />
+    <script>
+      transfer = function() {
+        var c = document.getElementsByTagName('canvas')[0];
+        document.getElementById('canvasImg').src = c.toDataURL();
+      }
+    </script>
+  </body>
+</html>
