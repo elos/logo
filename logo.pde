@@ -1,11 +1,11 @@
 /* @pjs transparent="true"; */
 
-float pcirclex(float t, float period, float radius) {
-  return cos(t) * radius;
+float pcirclex(float t, float period, float radius, float rotate) {
+  return cos(t + rotate) * radius;
 }
 
-float pcircley(float t, float period, float radius) {  
-  return sin(t) * radius;
+float pcircley(float t, float period, float radius, float rotate) {  
+  return sin(t + rotate) * radius;
 }
 
 float pradius(float t, int segments, float radius, float shift) {
@@ -39,7 +39,9 @@ void draw()
   ox = r + 55 * size;
   oy = ox;
   
-  segments = 2;
+  segments = 2
+  
+  float rotate = PI / 8;
   
   int outer_shift = 3;
   int inner_shift = 30;
@@ -48,8 +50,8 @@ void draw()
     for (float s = offset * tau / inner_shift + o; s <= tau + o; s += tau / inner_shift) {
       for (float t = 0; t <= tau; t += dt) {
         radius = pradius(t, segments, r, s);
-        x1 = pcirclex(t, period, radius);
-        y1 = pcircley(t, period, radius);
+        x1 = pcirclex(t, period, radius, rotate);
+        y1 = pcircley(t, period, radius, rotate);
         point(x1 + ox, y1 + oy);
       }
     }
