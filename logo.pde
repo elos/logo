@@ -9,11 +9,13 @@ float pcircley(float t, float period, float radius) {
 }
 
 float pradius(float t, int segments, float radius, float shift) {
-  return 50 * sin(t * segments + shift) + radius;
+  return size * 50 * sin(t * segments + shift) + radius;
 }
 
+float size = 1;
+
 void setup() {  // setup() runs once
-  size(480, 480);
+  size(int(size * 480), int(size * 480));
   frameRate(300);
   background(0, 0, 0, 0);
   stroke(0, 230, 0);
@@ -33,9 +35,9 @@ void draw()
   int segments;
   
   period = 1000;
-  r = 185;
-  ox = r + 55;
-  oy = r + 55;
+  r = size * 185;
+  ox = r + 55 * size;
+  oy = ox;
   
   segments = 2;
   
